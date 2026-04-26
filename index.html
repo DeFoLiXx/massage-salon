@@ -1,693 +1,105 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Тиша — Масажний салон</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cream: #f5f0ea;
-    --sand: #e8ddd0;
-    --mocha: #8b7355;
-    --bark: #5c4a32;
-    --dark: #2a2218;
-    --muted: #a89880;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sun City Cafe</title>
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background-color: var(--cream);
-    color: var(--dark);
-    font-family: 'Jost', sans-serif;
-    font-weight: 300;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* NOISE TEXTURE OVERLAY */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0.4;
-  }
-
-  /* HEADER */
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 5vw;
-    border-bottom: 1px solid var(--sand);
-    position: sticky;
-    top: 0;
-    background: var(--cream);
-    z-index: 10;
-    animation: fadeDown 0.8s ease both;
-  }
-
-  .logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
-    font-weight: 300;
-    letter-spacing: 0.15em;
-    color: var(--bark);
-  }
-
-  nav a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-left: 2.5rem;
-    transition: color 0.3s;
-  }
-  nav a:hover { color: var(--bark); }
-
-  /* HERO */
-  .hero {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 90vh;
-    animation: fadeUp 1s 0.2s ease both;
-  }
-
-  .hero-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 6rem 5vw 6rem 8vw;
-  }
-
-  .hero-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 2rem;
-  }
-
-  .hero-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(3.5rem, 7vw, 6rem);
-    font-weight: 300;
-    line-height: 1.05;
-    color: var(--bark);
-    margin-bottom: 2rem;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--mocha);
-  }
-
-  .hero-desc {
-    font-size: 0.95rem;
-    color: var(--muted);
-    max-width: 380px;
-    margin-bottom: 3rem;
-    line-height: 1.9;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.9rem 2.5rem;
-    background: var(--bark);
-    color: var(--cream);
-    text-decoration: none;
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    transition: background 0.3s, transform 0.2s;
-    align-self: flex-start;
-  }
-  .btn:hover { background: var(--dark); transform: translateY(-1px); }
-
-  .hero-visual {
-    background: var(--sand);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-visual::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(139,115,85,0.15) 0%, transparent 60%);
-  }
-
-  .hero-visual svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.12;
-    width: 60%;
-  }
-
-  .big-number {
-    position: absolute;
-    bottom: -2rem;
-    right: -1rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18rem;
-    color: var(--mocha);
-    opacity: 0.07;
-    line-height: 1;
-    user-select: none;
-  }
-
-  /* DIVIDER */
-  .divider {
-    display: flex;
-    align-items: center;
-    padding: 0 5vw;
-    gap: 2rem;
-    margin: 4rem 0;
-  }
-  .divider-line { flex: 1; height: 1px; background: var(--sand); }
-  .divider-text { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
-
-  /* ABOUT */
-  .about {
-    padding: 5rem 8vw;
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 5rem;
-    align-items: start;
-  }
-
-  .section-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 5rem;
-    color: var(--sand);
-    font-weight: 300;
-    line-height: 1;
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.2rem;
-    font-weight: 300;
-    color: var(--bark);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-  }
-
-  .about-text p {
-    color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.95;
-    margin-bottom: 1.2rem;
-  }
-
-  .tag-row {
-    display: flex;
-    gap: 0.7rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .tag {
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--sand);
-    font-size: 0.68rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--mocha);
-  }
-
-  /* SERVICES */
-  .services {
-    background: var(--dark);
-    padding: 6rem 8vw;
-    color: var(--cream);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .services::before {
-    content: 'масаж';
-    position: absolute;
-    top: -2rem;
-    right: -1rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 14rem;
-    color: rgba(255,255,255,0.03);
-    font-weight: 300;
-    white-space: nowrap;
-  }
-
-  .services-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 4rem;
-  }
-
-  .services .section-title {
-    color: var(--sand);
-  }
-
-  .services-sub {
-    font-size: 0.78rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    max-width: 200px;
-    text-align: right;
-    line-height: 1.7;
-  }
-
-  .price-list { width: 100%; }
-
-  .price-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto auto;
-    align-items: baseline;
-    gap: 1.5rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    transition: background 0.3s;
-    cursor: default;
-  }
-
-  .price-item:hover .price-name { color: var(--sand); }
-  .price-item:last-child { border-bottom: none; }
-
-  .price-index {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.1em;
-    padding-top: 2px;
-  }
-
-  .price-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.7rem;
-    font-weight: 300;
-    color: rgba(255,255,255,0.75);
-    transition: color 0.3s;
-  }
-
-  .price-duration {
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-  }
-
-  .price-cost {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--mocha);
-    white-space: nowrap;
-  }
-
-  .price-cost span {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-left: 0.3rem;
-  }
-
-  /* INFO STRIP */
-  .info-strip {
-    background: var(--sand);
-    padding: 3rem 8vw;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-  }
-
-  .info-item {
-    text-align: center;
-    padding: 1rem;
-  }
-
-  .info-icon {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 2.5rem;
-    color: var(--mocha);
-    margin-bottom: 0.5rem;
-  }
-
-  .info-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 0.3rem;
-  }
-
-  .info-value {
-    font-size: 0.88rem;
-    color: var(--bark);
-  }
-
-  /* CONTACT */
-  .contact {
-    padding: 6rem 8vw;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-
-  .contact-left .section-title { margin-bottom: 1rem; }
-
-  .contact-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.9;
-    margin-bottom: 2.5rem;
-  }
-
-  .contact-line {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.2rem 0;
-    border-bottom: 1px solid var(--sand);
-  }
-
-  .contact-line-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    width: 80px;
-  }
-
-  .contact-line-value {
-    font-size: 0.9rem;
-    color: var(--bark);
-  }
-
-  .contact-right {
-    background: var(--sand);
-    height: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .map-placeholder {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.78rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    z-index: 1;
-  }
-
-  .map-placeholder .map-icon {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem;
-    display: block;
-    color: var(--mocha);
-    margin-bottom: 1rem;
-  }
-
-  /* FOOTER */
-  footer {
-    padding: 2rem 8vw;
-    border-top: 1px solid var(--sand);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .footer-copy {
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-  }
-
-  .footer-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    color: var(--mocha);
-    letter-spacing: 0.2em;
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-15px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* SCROLL REVEAL */
-  .reveal {
-    opacity: 0;
-    transform: translateY(25px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    .hero { grid-template-columns: 1fr; min-height: auto; }
-    .hero-visual { height: 250px; }
-    .hero-text { padding: 3rem 5vw; }
-    .about { grid-template-columns: 1fr; gap: 1.5rem; }
-    .section-num { font-size: 3rem; }
-    .services-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    .services-sub { text-align: left; }
-    .price-item { grid-template-columns: auto 1fr auto; }
-    .price-duration { display: none; }
-    .info-strip { grid-template-columns: 1fr; }
-    .contact { grid-template-columns: 1fr; }
-    .contact-right { height: 200px; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
-    nav { display: none; }
-  }
-</style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<!-- HEADER -->
 <header>
-  <div class="logo">Тиша</div>
-  <nav>
-    <a href="#about">Про нас</a>
-    <a href="#services">Послуги</a>
-    <a href="#contact">Контакти</a>
-  </nav>
+  <div class="logo">
+    <img src="images/logo.jpg" alt="SUN CITY">
+  </div>
+  <a href="tel:+380689346464" class="btn-call">📞 Дзвонити</a>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-text">
-    <p class="hero-label">Масажний салон · Київ</p>
-    <h1 class="hero-title">Простір<br><em>спокою</em><br>та тепла</h1>
-    <p class="hero-desc">
-      Ми створили місце, де тіло відновлюється, а думки вщухають.
-      Тільки перевірені техніки, м'яка атмосфера і увага до кожного гостя.
-    </p>
-    <a href="#services" class="btn">Переглянути послуги</a>
-  </div>
-  <div class="hero-visual">
-    <!-- Decorative leaf SVG -->
-    <svg viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 10 C60 60 20 120 100 290 C180 120 140 60 100 10Z" fill="#5c4a32"/>
-      <path d="M100 10 L100 290" stroke="#8b7355" stroke-width="1"/>
-      <path d="M100 80 C80 100 60 115 50 140" stroke="#8b7355" stroke-width="0.8"/>
-      <path d="M100 80 C120 100 140 115 150 140" stroke="#8b7355" stroke-width="0.8"/>
-      <path d="M100 140 C75 160 55 180 45 210" stroke="#8b7355" stroke-width="0.8"/>
-      <path d="M100 140 C125 160 145 180 155 210" stroke="#8b7355" stroke-width="0.8"/>
-    </svg>
-    <div class="big-number">∞</div>
-  </div>
-</section>
-
-<div class="divider">
-  <div class="divider-line"></div>
-  <div class="divider-text">Відчуйте різницю</div>
-  <div class="divider-line"></div>
-</div>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="reveal">
-    <div class="section-num">01</div>
-  </div>
-  <div class="about-text reveal">
-    <h2 class="section-title">Що таке<br>салон «Тиша»</h2>
-    <p>
-      «Тиша» — це камерний масажний салон у серці міста, де кожна деталь підпорядкована одній меті: 
-      дати вам справжній відпочинок. Ми не є великою мережею — ми команда майстрів, 
-      яким справді не байдуже ваше самопочуття.
-    </p>
-    <p>
-      У нашому арсеналі — класичний релаксаційний масаж, глибокий тканинний масаж для зняття 
-      м'язового напруження, а також ароматерапевтичні сесії з натуральними оліями.
-      Кожна процедура індивідуально підбирається під ваш стан та запит.
-    </p>
-    <p>
-      Ми працюємо в тихому, затишному кабінеті, де панують спокій і тепло.
-      Записатись можна онлайн або за телефоном — без черг і очікувань.
-    </p>
-    <div class="tag-row">
-      <span class="tag">Класичний масаж</span>
-      <span class="tag">Глибокий масаж</span>
-      <span class="tag">Ароматерапія</span>
-      <span class="tag">Антистрес</span>
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1>Sun City</h1>
+    <p>Смачно • Затишно • Домашньо</p>
+    <div class="hero-buttons">
+      <a href="menu.html" class="btn btn-primary">🍴 Переглянути меню</a>
+      <a href="tel:+380689346464" class="btn btn-secondary">📞 068 934 64 64</a>
     </div>
   </div>
 </section>
 
-<!-- SERVICES / PRICE -->
-<section class="services" id="services">
-  <div class="services-header reveal">
-    <div>
-      <div class="section-num" style="color: rgba(255,255,255,0.1); margin-bottom: 0.5rem;">02</div>
-      <h2 class="section-title">Послуги<br>та ціни</h2>
+<section class="banquets">
+  <h2 class="section-header">Банкети та святкування</h2>
+
+  <!-- Основний зал -->
+  <div class="hall">
+    <h3>Основний зал</h3>
+    <div class="media-grid">
+      <video src="images/осн11.mp4" controls></video>
+      <video src="images/осн22.mp4" controls></video>
+      <a href="images/осн1.jpg" target="_blank"><img src="images/осн1.jpg" alt="Фото основного залу"></a>
+      <a href="images/осн2.jpg" target="_blank"><img src="images/осн2.jpg" alt="Фото основного залу"></a>
     </div>
-    <p class="services-sub">Усі сеанси проводить сертифікований майстер</p>
+    <div class="divider"></div>
   </div>
 
-  <div class="price-list reveal">
-    <div class="price-item">
-      <span class="price-index">001</span>
-      <div>
-        <div class="price-name">Релаксаційний масаж</div>
-        <div style="font-size:0.75rem; color: var(--muted); margin-top:0.3rem;">
-          М'який масаж всього тіла. Знімає втому, заспокоює нервову систему, відновлює сон.
-        </div>
-      </div>
-      <span class="price-duration">60 хв</span>
-      <div class="price-cost">300 <span>грн</span></div>
+  <!-- Банкетний зал -->
+  <div class="hall">
+    <h3>Банкетний зал</h3>
+    <div class="media-grid">
+      <a href="images/бнк1.jpg" target="_blank"><img src="images/бнк1.jpg" alt="Фото банкетного залу"></a>
+      <a href="images/бнк2.jpg" target="_blank"><img src="images/бнк2.jpg" alt="Фото банкетного залу"></a>
     </div>
+    <div class="divider"></div>
+  </div>
 
-    <div class="price-item">
-      <span class="price-index">002</span>
-      <div>
-        <div class="price-name">Глибокотканинний масаж</div>
-        <div style="font-size:0.75rem; color: var(--muted); margin-top:0.3rem;">
-          Інтенсивна робота з глибокими шарами м'язів. Усуває хронічне напруження і болі у спині.
-        </div>
-      </div>
-      <span class="price-duration">75 хв</span>
-      <div class="price-cost">499 <span>грн</span></div>
-    </div>
-
-    <div class="price-item">
-      <span class="price-index">004</span>
-      <div>
-        <div class="price-name">Масаж 4</div>
-        <div style="font-size:0.75rem; color: var(--muted); margin-top:0.3rem;">
-          Індивідуальна програма масажу за вашим запитом.
-        </div>
-      </div>
-      <span class="price-duration">45 хв</span>
-      <div class="price-cost">2 000 <span>грн</span></div>
-    </div>
-
-    <div class="price-item">
-      <span class="price-index">003</span>
-      <div>
-        <div class="price-name">Преміум SPA-ритуал</div>
-        <div style="font-size:0.75rem; color: var(--muted); margin-top:0.3rem;">
-          Повний SPA-досвід: масаж тіла + ароматерапія + пілінг + маска. Глибоке відновлення.
-        </div>
-      </div>
-      <span class="price-duration">120 хв</span>
-      <div class="price-cost">4 444 <span>грн</span></div>
+  <!-- Бар -->
+  <div class="hall">
+    <h3>Бар</h3>
+    <div class="media-grid">
+      <a href="images/бар.jpg" target="_blank"><img src="images/бар.jpg" alt="Фото бару"></a>
     </div>
   </div>
 </section>
 
-<!-- INFO STRIP -->
-<div class="info-strip reveal">
-  <div class="info-item">
-    <div class="info-icon">✦</div>
-    <div class="info-label">Графік роботи</div>
-    <div class="info-value">Щодня 09:00 — 21:00</div>
-  </div>
-  <div class="info-item">
-    <div class="info-icon">◈</div>
-    <div class="info-label">Попередній запис</div>
-    <div class="info-value">Рекомендується за 1–2 дні</div>
-  </div>
-  <div class="info-item">
-    <div class="info-icon">◇</div>
-    <div class="info-label">Оплата</div>
-    <div class="info-value">Готівка · Картка · Переказ</div>
-  </div>
-</div>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="reveal">
-    <div class="section-num">03</div>
-    <h2 class="section-title">Запис та<br>контакти</h2>
-    <p class="contact-desc">
-      Запишіться зручним для вас способом. Ми відповімо протягом кількох хвилин 
-      і підберемо час, який підходить саме вам.
-    </p>
-
-    <div class="contact-line">
-      <span class="contact-line-label">Телефон</span>
-      <span class="contact-line-value">+38 (097) 123-45-67</span>
+<!-- Главная страница футер -->
+<footer class="footer main-footer">
+  <div class="footer-overlay"></div>
+  <div class="footer-content">
+    <div class="footer-block">
+      <h3>Контакти</h3>
+      <p>📞 <a href="tel:+380689346464">068 934 64 64</a></p>
+      <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Sun+City+cafe" target="_blank">
+        вул. Метрологічна, 48, Київ
+      </a></p>
+      <p>🕒 Пн–Нд: 10:00 – 21:00</p>
     </div>
-    <div class="contact-line">
-      <span class="contact-line-label">Telegram</span>
-      <span class="contact-line-value">@tisha_salon</span>
-    </div>
-    <div class="contact-line">
-      <span class="contact-line-label">Адреса</span>
-      <span class="contact-line-value">вул. Саксаганського, 14, Київ</span>
-    </div>
-    <div class="contact-line">
-      <span class="contact-line-label">Метро</span>
-      <span class="contact-line-value">5 хв від ст. Олімпійська</span>
+    <div class="footer-block">
+      <h3>Наші послуги</h3>
+      <ul>
+        <li>🍴 Їжа на виніс</li>
+        <li>💳 Безготівкова оплата</li>
+        <li>📱 NFC-платежі</li>
+        <li>👨‍👩‍👧 Сімейне середовище</li>
+      </ul>
     </div>
   </div>
-
-  <div class="contact-right reveal">
-    <div class="map-placeholder">
-      <span class="map-icon">⊕</span>
-      вул. Саксаганського, 14<br>Київ
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-copy">© 2024 Салон «Тиша». Усі права захищено.</div>
-  <div class="footer-logo">Тиша</div>
-  <div class="footer-copy">Ліцензія МОЗ України №0001</div>
+  <div class="footer-bottom">© 2026 Sun City Cafe</div>
 </footer>
 
+
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), 100);
-      }
-    });
-  }, { threshold: 0.12 });
-  reveals.forEach(el => observer.observe(el));
+  const slides = document.querySelector('.slides');
+  const images = document.querySelectorAll('.slides img');
+  let index = 0;
+
+  document.querySelector('.next').onclick = () => move(1);
+  document.querySelector('.prev').onclick = () => move(-1);
+
+  function move(step) {
+    index = (index + step + images.length) % images.length;
+    slides.style.transform = `translateX(-${index * 100}%)`;
+  }
 </script>
 
 </body>

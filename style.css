@@ -1,0 +1,803 @@
+:root {
+  --primary-green: #149c1f;
+  --accent-yellow: #ffa927;
+  --dark-bg: #1A1A1A;
+  --text-main: #333333;
+  --white: #ffffff;
+
+  --br-cards: 16px;
+  --br-buttons: 50px;
+
+  --font-main: 'Roboto', 'Open Sans', sans-serif;
+}
+
+/* Базовые стили */
+body {
+  font-family: var(--font-main);
+  margin: 0;
+  padding: 0;
+  background: var(--white);
+  color: var(--text-main);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1px 7px;
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+header .logo {
+  font-weight: bold;
+  color: var(--accent-yellow);
+  font-size: 1.2rem;
+}
+header .btn-call {
+  background: var(--primary-green);
+  color: var(--white);
+  padding: 10px 16px;
+  border-radius: var(--br-buttons);
+  font-weight: bold;
+}
+.logo img {
+  height: 60px;      /* или 32–48px */
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+
+.hero {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 70vh;
+  background: #ddd url('images/hall.jpg') center/cover no-repeat;
+  color: #fff;
+}
+
+.hero .overlay {
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* Общий стиль для всех кнопок hero и header */
+.hero-buttons .btn,
+header .btn-call {
+  padding: 12px 24px;
+  border-radius: var(--br-buttons);
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s ease; /* плавный переход для всех кнопок */
+}
+
+/* Зелёная кнопка (hero) */
+.hero-buttons .btn-primary {
+  background: var(--primary-green) !important;
+  color: var(--white);
+}
+
+.hero-buttons .btn-primary:hover {
+  background: #0f7c18;
+  transform: scale(1.05);
+}
+
+/* Жёлтая кнопка (hero) */
+.hero-buttons .btn-secondary {
+  background: var(--accent-yellow);
+  color: #000;
+}
+
+.hero-buttons .btn-secondary:hover {
+  background: #e6ac00;
+  transform: scale(1.05);
+}
+
+/* Кнопка в хедере */
+header .btn-call {
+  background: var(--primary-green);
+  color: var(--white);
+}
+
+header .btn-call:hover {
+  background: #0f7c18;   /* чуть темнее при наведении */
+  transform: scale(1.05);
+}
+
+/* About Section */
+.about {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.about .section-header {
+  max-width: 680px;
+  margin: 0 auto 24px;
+}
+.about-grid {
+  display: grid;
+  gap: 16px;
+  margin: 0 auto 32px;
+}
+.about-card {
+  background: #ffffff;
+  border-radius: var(--br-cards);
+  padding: 16px;
+  text-align: left;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.about-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+.media-gallery {
+  display: grid;
+  gap: 24px;
+}
+.media-group {
+  background: #ffffff;
+  border-radius: var(--br-cards);
+  padding: 20px;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.08);
+}
+.media-title {
+  font-weight: bold;
+  margin-bottom: 12px;
+  text-align: left;
+}
+.media-row {
+  display: grid;
+  gap: 16px;
+}
+.media-row.single {
+  max-width: 420px;
+}
+.media-row.media-row-videos {
+  align-items: stretch;
+}
+.media-item {
+  margin: 0;
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: left;
+}
+.media-item img,
+.media-item video {
+  width: 100%;
+  display: block;
+  height: 220px;
+  object-fit: cover;
+}
+.media-item.media-item-video {
+  background: #111;
+}
+.media-item video {
+  background: #000;
+  aspect-ratio: 16 / 9;
+  height: 100%;
+}
+.media-item figcaption {
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  color: #555;
+}
+.underline {
+  width: 60px;
+  height: 3px;
+  background: var(--primary-green);
+  margin: 8px auto 16px;
+}
+
+
+/* ===== Блок "Про наше кафе" ===== */
+.about-cafe {
+  padding: 60px 20px;
+  background: #f9f9f9; /* мягкий фон */
+  text-align: center;
+}
+
+.about-cafe-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-cafe h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.about-cafe .underline {
+  width: 60px;
+  height: 3px;
+  background: var(--primary-green);
+  margin: 8px auto 20px;
+}
+
+.about-cafe p {
+  font-size: 1rem;
+  color: var(--text-main);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== Адаптив ===== */
+@media (max-width: 768px) {
+  .about-cafe {
+    padding: 40px 15px;
+  }
+  .about-cafe h2 {
+    font-size: 1.5rem;
+  }
+  .about-cafe p {
+    font-size: 0.95rem;
+  }
+}
+/* Банкетные вкладки */
+.banquets {
+  padding: 60px 20px;
+  background: #fff;
+}
+
+.banquets .section-header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+}
+
+.hall {
+  margin-bottom: 60px;
+}
+
+.hall h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.media-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.media-grid video,
+.media-grid img {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.divider {
+  height: 2px;
+  width: 60px;
+  background: var(--primary-green);
+  margin: 40px auto 0;
+  border-radius: 2px;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .media-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .media-grid video,
+  .media-grid img {
+    height: auto;
+  }
+
+  .hall {
+    margin-bottom: 40px;
+  }
+}
+
+/* Menu items */
+.menu-items {
+  padding: 20px;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.menu-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+.item-info h4 { font-weight: bold; margin: 0 0 5px; }
+.item-info .weight { color: #666; font-size: 0.9rem; margin:0; }
+.item-info .price { color: #000; font-weight: bold; font-size: 1.1rem; margin:0; }
+
+/* Promo Lunch */
+.lunch-card {
+  background: var(--white);
+  border-radius: var(--br-cards);
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+/* ===== Общий футер ===== */
+.footer {
+  position: relative;
+  background: url('images/footer.jpg') center / cover no-repeat;
+  color: #fff;
+  text-align: center;
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  padding: 60px 20px 10px 20px; /* сверху 60px, снизу 10px */
+  box-sizing: border-box;
+}
+
+/* Специально для второй страницы: футер на всю ширину */
+.footer.menu-footer {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Затемнение */
+.footer-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 0;
+}
+
+/* Содержимое футера */
+.footer-content {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* Заголовки блоков футера */
+.footer-block h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+/* Ссылки */
+.footer a {
+  color: #FFD700; /* основной цвет ссылок */
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #FF7F50; /* hover эффект */
+}
+
+/* Списки */
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 8px;
+}
+
+/* Полоска с авторскими правами */
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 8px 0;
+  font-size: 0.95rem;
+  color: #ccc;
+  background: #000; /* чёрная полоска под текст */
+}
+
+/* ===== CTA карточка (только для второй страницы) ===== */
+.cta-section {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #149c1f, #ffa927);
+  color: #fff;
+}
+
+.cta-section h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.cta-section p {
+  font-size: 1rem;
+  margin-bottom: 25px;
+  opacity: 0.9;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: #ff7f50;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-outline {
+  background: #555;
+  color: #fff;
+  border: none;
+}
+
+.btn-outline:hover {
+  background: #666;
+}
+/* ===== Base ===== */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Divider */
+.menu-divider {
+  border: none;
+  height: 2px;
+  background: #ccc;
+  width: 60px;
+  margin: 10px auto;
+}
+
+/* ===== Mini Cards ===== */
+.mini-cards-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mini-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  padding: 10px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mini-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.mini-card {
+  flex: 0 0 auto;
+  min-width: 120px;
+  padding: 8px 12px;
+  background-size: cover;      /* фон растягивается */
+  background-position: center; /* центр картинки */
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Пример: задний фон первой карточки как на футере */
+.mini-card.first {
+  background-image: url('footer-bg.jpg'); /* твоя старая картинка футера */
+}
+
+/* Временная заглушка для второй карточки */
+.mini-card.second {
+  background-image: url('placeholder.jpg'); /* можно заменить на реальную */
+}
+
+/* Фейковый скроллбар */
+.fake-scrollbar {
+  position: absolute;
+  bottom: 4px;
+  left: 10px;
+  right: 10px;
+  height: 6px;
+  background: #eee;
+  border-radius: 10px;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fake-thumb {
+  position: absolute;
+  height: 100%;
+  background: #676767;
+  border-radius: 10px;
+  transform: translateX(0);
+  transition: none;
+  pointer-events: none;
+}
+
+/* ===== Footer ===== */
+.footer {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: 0;
+  padding-right: 0;
+  background-image: url('images/footer.jpg'); /* старая картинка футера */
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.footer-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.footer-bottom {
+  width: 100%;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 14px;
+  background: rgba(0,0,0,0.5); /* полупрозрачная полоса на футере */
+}
+
+/* ===== CTA Section Full Width ===== */
+.cta-section {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 40px 0;
+  box-sizing: border-box;
+  background-image: url('images/order.jpg'); /* можно заменить на нужную картинку */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #fff; /* текст белый на фоне картинки */
+}
+
+/* Внутренний контент центрирован */
+.cta-section > * {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Заголовки и текст */
+.cta-section h2,
+.cta-section p {
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* чтобы текст выделялся на фоне */
+}
+
+/* ===== Кнопки ===== */
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.cta-buttons .btn {
+  max-width: 200px;
+  width: 100%;
+  text-align: center;
+}
+
+/* ===== Other content fixes ===== */
+.menu-items,
+.category,
+article {
+  margin-bottom: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mini-cards {
+    flex-wrap: wrap;
+    height: 120px;
+  }
+
+  .mini-card {
+    min-width: calc(50% - 10px);
+  }
+}
+
+/* Responsive Desktop */
+@media(min-width:1024px){
+  .menu-content .icon {
+    font-size: 8rem;
+  }
+  .menu-item img { 
+    width: 120px; 
+    height: 120px; 
+  }
+}
+/* ===== Обёртка ===== */
+.mini-cards-wrapper {
+  position: relative;
+  margin: 20px 0;
+}
+
+/* ===== Карточки ===== */
+.mini-cards {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE */
+}
+
+.mini-cards::-webkit-scrollbar {
+  display: none;                  /* Chrome */
+}
+
+/* ===== Мини-карточка ===== */
+.mini-card {
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  background: #ffffff;
+  color: #000000;
+  border-radius: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: transform .2s, background .2s;
+}
+
+.mini-card:hover {
+  background: #c6c6c6;
+  transform: translateY(-2px);
+}
+
+/* ===== Фейковый скроллбар ===== */
+.fake-scrollbar {
+  position: relative;
+  height: 6px;
+  margin: 8px 10px 0;
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Ползунок */
+.fake-thumb {
+  position: absolute;
+  height: 100%;
+  width: 40px; /* стартовая ширина, JS поменяет */
+  background: linear-gradient(90deg, #149c1f , #ffa927);
+  border-radius: 10px;
+  left: 0;
+  transition: background .2s;
+}
+/* ===== Mini Cards: mobile (по умолчанию) ===== */
+.mini-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 12px;
+  padding: 10px;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.mini-cards::-webkit-scrollbar {
+  display: none;
+}
+
+.mini-card {
+  flex: 0 0 auto;
+  min-width: 140px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ===== Desktop: 2–3 ряда, без скролла ===== */
+@media (min-width: 1024px) {
+  .mini-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+
+    overflow: visible; /* ❗ убираем скролл */
+  }
+
+  .mini-card {
+    white-space: normal;
+  }
+
+  .fake-scrollbar {
+    display: none; /* ❗ на ПК не нужен */
+  }
+}
+header {
+  position: relative; /* важно */
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}

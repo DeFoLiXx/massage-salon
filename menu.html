@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sun City Menu</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+<style>
+  /* ===== Base ===== */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #fdfdfd;
+    color: #333;
+  }
+
+  .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+    .btn-call {
+      text-decoration: none;
+      background: #ff7f50;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+    }
+
+    /* ===== Hero ===== */
+    .menu-hero {
+      background: #ddd url('images/hall.jpg') center / cover no-repeat;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+
+    .menu-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    .menu-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .menu-content h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .menu-divider {
+      width: 60px;
+      height: 3px;
+      background: #ccc;
+      margin: 10px auto;
+      border: none;
+    }
+
+    /* ===== Promo lunch ===== */
+    .promo-lunch {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+
+    .lunch-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      width: 80%;
+      max-width: 600px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .lunch-card h2 {
+      margin-bottom: 5px;
+    }
+
+    .lunch-card .price {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    /* ===== Mini cards ===== */
+    .mini-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .mini-card {
+      background: #fff;
+      padding: 10px 15px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .mini-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== Menu ===== */
+    .menu-items {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .category {
+      margin-bottom: 40px;
+    }
+
+    .category h3 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .menu-item img {
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin-right: 15px;
+      background: #ccc; /* заглушка */
+    }
+
+    .item-info h4 {
+      margin: 0 0 5px 0;
+    }
+
+    .item-info .weight {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 5px;
+    }
+
+    .item-info .price {
+      font-weight: bold;
+      font-size: 1rem;
+    }
+
+    /* ===== Footer CTA ===== */
+    .menu-footer-cta {
+      background: #222 url('images/placeholder-footer.jpg') center / cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .menu-footer-cta h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .menu-footer-cta p {
+      font-size: 1rem;
+      margin-bottom: 25px;
+    }
+
+    .menu-footer-cta .btn {
+      text-decoration: none;
+      border-radius: 6px;
+      padding: 12px 30px;
+      margin: 0 5px;
+      display: inline-block;
+    }
+
+    .menu-footer-cta .btn-primary {
+      background: #ff7f50;
+      color: #fff;
+    }
+
+    .menu-footer-cta .btn-outline {
+      border: 2px solid #fff;
+      color: #fff;
+      background: transparent;
+    }
+
+   /* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .menu-item {
+    flex-direction: row; /* горизонтально */
+    align-items: center;
+    gap: 10px;           /* отступ между картинкой и информацией */
+    padding: 10px;
+  }
+
+  .menu-item img {
+    width: 100px;       /* чуть больше для мобильного */
+    height: 100px;
+    margin: 0;          /* убираем нижний margin */
+  }
+
+  .item-info {
+    display: flex;
+    flex-direction: column; /* инфа под инфой справа от картинки */
+    justify-content: center;
+  }
+
+  .item-info h4 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+
+  .item-info .weight {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 5px;
+  }
+
+  .item-info .price {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+.mini-cards {
+   flex-direction: column;
+    align-items: center; } 
+  }
+  /* Обёртка */
+.complex-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Новинки — яркая карточка */
+.new-items-card {
+  position: relative;
+  background: linear-gradient(135deg, #ff7f50, #ff3c00);
+  color: #fff;
+  padding: 25px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(255, 60, 0, 0.4);
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Бейдж */
+.new-items-card .badge {
+  position: absolute;
+  top: 15px;
+  right: -40px;
+  background: #000;
+  color: #fff;
+  padding: 5px 50px;
+  font-size: 0.8rem;
+  transform: rotate(45deg);
+}
+
+/* Текст */
+.new-items-card h2 {
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+
+.new-items-card .price {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin-top: 10px;
+}
+
+/* Hover эффект */
+.new-items-card:hover {
+  transform: scale(1.05);
+  transition: 0.3s;
+}
+
+/* 📱 Мобилка */
+@media (max-width: 768px) {
+  .complex-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+ </style>
+</head>   
+<body> 
+ <header> 
+ <div class="logo">
+   <img src="images/logo.jpg" alt="SUN CITY">
+  </div>
+ <a href="tel:0689346464" class="btn-call">📞 Дзвонити</a>
+</header> 
+  <!-- Hero / Наше меню -->
+<section class="menu-hero">
+  <div class="overlay"></div>
+  <div class="menu-content">
+    <div class="icon">🍽️</div>
+    <h1>Наше меню</h1>
+    <hr class="menu-divider">
+    <p>Вишукані страви, приготовані з любов'ю та увагою до кожної деталі</p>
+
+    <!-- Комплексний обід внутри большой карточки -->
+    <div class="complex-lunch-card" data-id="complex-lunch">
+      <h2></h2>
+      <p class="composition"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+</section>
+
+   <!-- Новинки -->
+ <div class="new-items-card">
+  <div class="badge">🔥 НОВИНКИ</div>
+  <h2>Нові страви</h2>
+
+  <div class="new-items-list"></div>
+</div>
+</section>
+
+
+
+
+<style>
+/* Hero фон уже есть, overlay для затемнения */
+.menu-hero {
+  background: #ddd url('images/hall.jpg') center/cover no-repeat;
+  height: auto;
+  padding: 60px 20px 40px 20px; /* чтобы была высота и место под карточку */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* начало сверху */
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.menu-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px; /* чтобы не растягивалось */
+  margin: 0 auto;
+}
+
+.complex-lunch-card {
+  background: #fff; /* белый фон */
+  color: #000;      /* текст чёрный */
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  margin: 20px auto 0 auto; /* центрирование и отступ сверху */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.complex-lunch-card h2 {
+  margin: 0 0 10px 0;
+}
+.complex-lunch-card .price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+.new-items-list {
+  margin-top: 15px;
+}
+
+.new-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.new-item .left {
+  flex: 2;
+  text-align: left;
+}
+
+.new-item .center {
+  flex: 1;
+  text-align: center;
+  opacity: 0.8;
+}
+
+.new-item .right {
+  flex: 1;
+  text-align: right;
+  font-weight: bold;
+}
+</style> 
+<div class="mini-cards-wrapper">
+
+  <!-- Левая стрелка 
+  <button class="scroll-arrow left" aria-label="Scroll left">‹</button>-->
+
+  <!-- Ряд мини-карточек -->
+  <div class="mini-cards">
+    <div class="mini-card" onclick="document.getElementById('breakfast').scrollIntoView({behavior: 'smooth'})">🍳 Сніданки</div>
+    <div class="mini-card" onclick="document.getElementById('cold-snacks').scrollIntoView({behavior: 'smooth'})">❄️ Холодні закуски</div>
+    <div class="mini-card" onclick="document.getElementById('beer-snacks').scrollIntoView({behavior: 'smooth'})">🍺 Закуски до пива</div>
+    <div class="mini-card" onclick="document.getElementById('hot-snacks').scrollIntoView({behavior: 'smooth'})">🔥 Гарячі закуски</div>
+    <div class="mini-card" onclick="document.getElementById('soups').scrollIntoView({behavior: 'smooth'})">🍲 Перші страви</div>
+    <div class="mini-card" onclick="document.getElementById('salads').scrollIntoView({behavior: 'smooth'})">🥗 Салати</div>
+    <div class="mini-card" onclick="document.getElementById('garnish').scrollIntoView({behavior: 'smooth'})">🥔 Гарніри</div>
+    <div class="mini-card" onclick="document.getElementById('grill').scrollIntoView({behavior: 'smooth'})">🍖 Страви на мангалі</div>
+    <div class="mini-card" onclick="document.getElementById('hotdishes').scrollIntoView({behavior: 'smooth'})">🍛 Гарячі страви</div>
+    <div class="mini-card" onclick="document.getElementById('pizza').scrollIntoView({behavior: 'smooth'})">🍕 Піца</div>
+    <div class="mini-card" onclick="document.getElementById('burgers').scrollIntoView({behavior: 'smooth'})">🍔 Бургери</div>
+    <div class="mini-card" onclick="document.getElementById('pasta').scrollIntoView({behavior: 'smooth'})">🍝 Паста</div>
+    <div class="mini-card" onclick="document.getElementById('kids').scrollIntoView({behavior: 'smooth'})">👶 Дитяче меню</div>
+    <div class="mini-card" onclick="document.getElementById('desserts').scrollIntoView({behavior: 'smooth'})">🍰 Десерти</div>
+    <div class="mini-card" onclick="document.getElementById('drinks').scrollIntoView({behavior: 'smooth'})">🥤 Напої</div>
+    <div class="mini-card" onclick="document.getElementById('banquet').scrollIntoView({behavior: 'smooth'})">🎉 Банкетне меню</div>
+  </div>
+
+  <!-- Правая стрелка 
+  <button class="scroll-arrow right" aria-label="Scroll right">›</button>-->
+
+  <!-- Фейковый скроллбар -->
+  <div class="fake-scrollbar">
+    <div class="fake-thumb"></div>
+  </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.querySelector(".mini-cards");
+  const scrollbar = document.querySelector(".fake-scrollbar");
+  const thumb = document.querySelector(".fake-thumb");
+
+  function updateThumb() {
+    const visibleRatio = container.clientWidth / container.scrollWidth;
+    const thumbWidth = Math.max(visibleRatio * scrollbar.clientWidth, 30);
+
+    thumb.style.width = thumbWidth + "px";
+
+    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+    const maxThumbLeft = scrollbar.clientWidth - thumbWidth;
+
+    const scrollRatio = container.scrollLeft / maxScrollLeft;
+    thumb.style.left = scrollRatio * maxThumbLeft + "px";
+  }
+
+  container.addEventListener("scroll", updateThumb);
+  window.addEventListener("resize", updateThumb);
+
+  updateThumb();
+});
+</script>
+
+</div>
+
+
+<!-- Menu Items -->
+<section class="menu-items">
+<!-- 🍳 Сніданки -->
+<article class="category" id="breakfast">
+  <h3>🍳 Сніданки</h3>
+
+  <div class="menu-list">
+
+    <div class="menu-item" data-id="breakfast-1">
+      <img src="images/Яєчня по англійській.jpg" alt="Яєчня по-англійськи" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-2">
+      <img src="images/placeholder.jpg" alt="Омлет з двох яєць" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+   <div class="menu-item" data-id="breakfast-3">
+      <img src="images/placeholder.jpg" alt="Ліниві вареники (солодкі)" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-4">
+      <img src="images/placeholder.jpg" alt="Тост з куркою гриль та яйцем пашот" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-5">
+      <img src="images/Рол з куркою та овочами.jpg" alt="Рол з куркою та овочами" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-6">
+      <img src="images/Дует Брускет.jpg" alt="Дует брускет" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-7">
+      <img src="images/placeholder.jpg" alt="Млинці з джемом" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-8">
+      <img src="images/placeholder.jpg" alt="Млинці з яблуками" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-9">
+      <img src="images/Млинці з сиром.jpg" alt="Млинці з сиром" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+    <div class="menu-item" data-id="breakfast-10">
+      <img src="images/placeholder.jpg" alt="Хліб" loading="lazy">
+      <div class="item-info">
+        <h4 class="item-title"></h4>
+        <p class="weight"></p>
+        <p class="price"></p>
+      </div>
+    </div>
+
+  </div>
+</article>
+
+
+<!-- ❄️ Холодні закуски -->
+<article class="category" id="cold-snacks">
+  <h3>❄️ Холодні закуски</h3>
+
+  <div class="menu-item" data-id="cold-snacks-1">
+    <img src="images/Парфе з качиної печінки.jpg" alt="Парфе з качиної печінки" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-2">
+    <img src="images/placeholder.jpg" alt="Тар-тар з лосося" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-3">
+    <img src="images/Сирна Європа.jpg" alt="Сирна Європа" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-4">
+    <img src="images/placeholder.jpg" alt="Сирна Україна" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-5">
+    <img src="images/Мʼясна Європа.jpg" alt="М’ясна Європа" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-6">
+    <img src="images/Асорті сала.jpg" alt="Асорті з сала" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-7">
+    <img src="images/Оселедець або скумбрія власного посолу.jpg" alt="Оселедець або скумбрія власного посолу  з картоплею та мар. цибулею" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-8">
+    <img src="images/Млинці з лососем.jpg" alt="Млинці з лососем" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-9">
+    <img src="images/Домашні соління.jpg" alt="Домашні соління" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-10">
+    <img src="images/Язик телячий з хроном.jpg" alt="Язик телячий з хроном" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="cold-snacks-11">
+    <img src="images/Рулетики з баклажанів.jpg" alt="Рулетики з баклажанів з гострою начинкою" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+</article>
+
+<!-- 🍺 Закуски до пива -->
+<article class="category" id="beer-snacks">
+  <h3>🍺 Закуски до пива</h3>
+
+  <div class="menu-item" data-id="beer-snacks-1">
+    <img src="images/placeholder.jpg" alt="Ароматні крильця в паніровці" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="beer-snacks-2">
+    <img src="images/placeholder.jpg" alt="Курячі нагетси Панко" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="beer-snacks-3">
+    <img src="images/placeholder.jpg" alt="Тарілка пивних ласощів" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+</article>
+
+<!-- 🔥 Гарячі закуски -->
+<article class="category" id="hot-snacks">
+  <h3>🔥 Гарячі закуски</h3>
+
+  <div class="menu-item" data-id="hot-snacks-1">
+    <img src="images/Крильця теріякі.jpg" alt="Крильця теріякі з мікс салатом" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-2">
+    <img src="images/placeholder.jpg" alt="Лаваш з сиром сулугуні" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-3">
+    <img src="images/Деруни з грибамишварками.jpg" alt="Деруни з грибами / шкварками" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-4">
+    <img src="images/placeholder.jpg" alt="Креветки Батерфляй" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-5">
+    <img src="images/placeholder.jpg" alt="Пательня із свіжиною" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-6">
+    <img src="images/placeholder.jpg" alt="Ковбаски на грилі з аджикою та грінками" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-7">
+    <img src="images/placeholder.jpg" alt="Телячий язик на грилі" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-8">
+    <img src="images/placeholder.jpg" alt="Вареники з м’ясом / картоплею та грибами (сметана/шкварки)" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-9">
+    <img src="images/placeholder.jpg" alt="Пельмені у вершково-сирному соусі та печерицями" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-10">
+    <img src="images/placeholder.jpg" alt="Баклажан запечений з моцарелою" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hot-snacks-11">
+    <img src="images/Міні чебуреки.jpg" alt="Міні-чебуреки з соусом Сацикі" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+</article>
+
+<!-- 🍲 Перші страви -->
+<article class="category" id="soups">
+  <h3>🍲 Перші страви</h3>
+
+  <div class="menu-item" data-id="soups-1">
+    <img src="images/кур.бульйон.jpg" alt="Курячий бульйон з сухариками" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="soups-2">
+    <img src="images/борщ.jpg" alt="Борщ український з салом та грінками" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="soups-3">
+    <img src="images/крем суп гриби.jpg" alt="Крем-суп грибний" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="soups-4">
+    <img src="images/placeholder.jpg" alt="Французький цибулевий суп з тостом" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="soups-5">
+    <img src="images/юшка рибна.jpg" alt="Юшка рибна" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="soups-6">
+    <img src="images/placeholder.jpg" alt="Томатний суп з морепродуктами" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+</article>
+
+
+<!-- 🥗 Салати -->
+<article class="category" id="salads">
+  <h3>🥗 Салати</h3>
+
+  <div class="menu-item" data-id="salads-1">
+    <img src="images/С-т Грецький.jpg" alt="Салат «Грецький»" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-2">
+    <img src="images/С-т Цезар з куркою.jpg" alt="Салат «Цезар» з куркою та беконом" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-3">
+    <img src="images/С-т Цезар з креветками.jpg" alt="Салат «Цезар» з тигровими креветками" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-4">
+    <img src="images/С-т Капрезе.jpg" alt="Салат «Капрезе»" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-5">
+    <img src="images/placeholder.jpg" alt="Томати з бринзою та базиліком" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-6">
+    <img src="images/С-т Мисливець.jpg" alt="Салат «Мисливець»" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-7">
+    <img src="images/С-т з курячої печінки.jpg" alt="Теплий салат з курячою печінкою" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-8">
+    <img src="images/С-т теплий з мікс овочами і телятиною.jpg" alt="Теплий салат з мікс овочами та телятиною гриль" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-9">
+    <img src="images/С-т з овочів гриль.jpg" alt="Теплий салат з овочів гриль" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-10">
+    <img src="images/С-т теплий SunCity.jpg" alt="Теплий салат SunCity" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="salads-11">
+    <img src="images/Мікс салат з лососем і каперсами.jpg" alt="Мікс салат з лососем та каперсами" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+</article>
+<!-- 🥔 Гарніри -->
+<article class="category" id="garnish">
+  <h3>🥔 Гарніри</h3>
+
+  <div class="menu-item" data-id="garnish-1">
+    <img src="images/фрі.jpg" alt="Картопля фрі " loading="lazy">
+    <div class="item-info">
+      <h4>Картопля фрі</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="garnish-2">
+    <img src="images/Картопля дольки.jpg" alt="Картопля дольки" loading="lazy">
+    <div class="item-info">
+      <h4>Картопля дольки</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="garnish-3">
+    <img src="images/дольки часник.jpg" alt="Картопля дольки з часником та зеленню" loading="lazy">
+    <div class="item-info">
+      <h4>Картопля дольки з часником та зеленню</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="garnish-4">
+    <img src="images/Картопля по селянському з під черевеною.jpg" alt="Картопля по-селянськи з підчеревиною" loading="lazy">
+    <div class="item-info">
+      <h4>Картопля по-селянськи з підчеревиною</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="garnish-5">
+    <img src="images/пюре.jpg" alt="Картопляне пюре" loading="lazy">
+    <div class="item-info">
+      <h4>Картопляне пюре</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="garnish-6">
+    <img src="images/рис з овочами.jpg" alt="Рис з овочами" loading="lazy">
+    <div class="item-info">
+      <h4>Рис з овочами</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="garnish-7">
+    <img src="images/гречка гриби.jpg" alt="Гречка з грибами" loading="lazy">
+    <div class="item-info">
+      <h4>Гречка з грибами</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="garnish-8">
+    <img src="images/Овочі гриль.jpg" alt="Овочі гриль" loading="lazy">
+    <div class="item-info">
+      <h4>Овочі гриль</h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+</article>
+<!-- 🍖 Страви на мангалі -->
+<article class="category" id="grill">
+  <h3>🍖 Страви на мангалі</h3>
+
+  <div class="menu-item" data-id="grill-1">
+    <img src="images/placeholder.jpg" alt="Шашлик зі свинини" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-2">
+    <img src="images/Шашлик із курячої грудки.jpg" alt="Шашлик з курячої грудки" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-3">
+    <img src="images/Ша-к із курячого бедра.jpg" alt="Шашлик з кур. стегна" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-4">
+    <img src="images/placeholder.jpg" alt="Мисливські ковбаски на мангалі" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-5">
+    <img src="images/placeholder.jpg" alt="Стейк зі свинини на кістці" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-6">
+    <img src="images/placeholder.jpg" alt="Каре телятини" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-7">
+    <img src="images/Свинячі реберця на мангалі.jpg" alt="Свинячі реберця на мангалі" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-8">
+    <img src="images/placeholder.jpg" alt="Шашлик з курячих крилець" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-9">
+    <img src="images/Шашлик овочевий.jpg" alt="Шашлик овочевий" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-10">
+    <img src="images/placeholder.jpg" alt="Запечена картопля з підчеревиною" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-11">
+    <img src="images/placeholder.jpg" alt="Шашлик з сома" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+  <div class="menu-item" data-id="grill-12">
+    <img src="images/placeholder.jpg" alt="Набір «SunCity»№1" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="grill-13">
+    <img src="images/placeholder.jpg" alt="Набір «SunCity»№2" loading="lazy">
+    <div class="item-info">
+      <h4></h4>
+      <p class="weight"></p>
+      <p class="price"></p>
+    </div>
+  </div>
+</article>
+
+<!-- 🍝 Гарячі страви -->
+<article class="category" id="hotdishes">
+  <h3>🍝 Гарячі страви</h3>
+
+  <div class="menu-item" data-id="hotdishes-1">
+    <img src="images/Запечені реберця зі свинини з картоплею.jpg" alt="Запечені реберця зі свинини з картоплею" loading="lazy">
+    <div class="item-info">
+      <h4>Запечені реберця зі свинини з картоплею</h4>
+      <p class="weight">280/100/50</p>
+      <p class="price">360.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-2">
+    <img src="images/Стейк зі свинячого ошийка.jpg" alt="Стейк зі свинячого ошийка" loading="lazy">
+    <div class="item-info">
+      <h4>Стейк зі свинячого ошийка</h4>
+      <p class="weight">230/50/120</p>
+      <p class="price">375.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-3">
+    <img src="images/Медальйони з свинини в беконі.jpg" alt="Медальйони з свинини в беконі з соусом деміглас" loading="lazy">
+    <div class="item-info">
+      <h4>Медальйони з свинини в беконі з соусом деміглас</h4>
+      <p class="weight">200/30/30</p>
+      <p class="price">375.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-4">
+    <img src="images/Телятина каре з овочами гріль.jpg" alt="Телятина каре з овочами гриль" loading="lazy">
+    <div class="item-info">
+      <h4>Телятина каре з овочами гриль</h4>
+      <p class="weight">200/50/60</p>
+      <p class="price">400.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-5">
+    <img src="images/placeholder.jpg" alt="Біфстроганов з телятини на подушці" loading="lazy">
+    <div class="item-info">
+      <h4>Біфстроганов з телятини на подушці</h4>
+      <p class="weight">280/100</p>
+      <p class="price">380.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-6">
+    <img src="images/placeholder.jpg" alt="Куряче стегно на грилі" loading="lazy">
+    <div class="item-info">
+      <h4>Куряче стегно на грилі</h4>
+      <p class="weight">250/50/30</p>
+      <p class="price">285.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-7">
+    <img src="images/Куряча грудка з моцарелою і томатами.jpg" alt="Куряча грудка з моцарелою і томатами під соусом песто" loading="lazy">
+    <div class="item-info">
+      <h4>Куряча грудка з моцарелою і томатами під соусом песто</h4>
+      <p class="weight">280</p>
+      <p class="price">360.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-8">
+    <img src="images/Кордон блю.jpg" alt="Кордон блю" loading="lazy">
+    <div class="item-info">
+      <h4>Кордон блю</h4>
+      <p class="weight">300/40/30</p>
+      <p class="price">345.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-9">
+    <img src="images/placeholder.jpg" alt="Курчата табака" loading="lazy">
+    <div class="item-info">
+      <h4>Курчата табака (на вагу)</h4>
+      <p class="weight">100/15</p>
+      <p class="price">95.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-10">
+    <img src="images/Качина грудка під винним соусом.jpg" alt="Качина грудка під винним соусом" loading="lazy">
+    <div class="item-info">
+      <h4>Качина грудка під винним соусом</h4>
+      <p class="weight">150/50/30</p>
+      <p class="price">380.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-11">
+    <img src="images/placeholder.jpg" alt="Філе лосося на подушці зі шпината" loading="lazy">
+    <div class="item-info">
+      <h4>Філе лосося на подушці зі шпината</h4>
+      <p class="weight">150/100/50</p>
+      <p class="price">420.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-12">
+    <img src="images/placeholder.jpg" alt="Форель з овочами гриль" loading="lazy">
+    <div class="item-info">
+      <h4>Форель з овочами гриль</h4>
+      <p class="weight">250/100/50</p>
+      <p class="price">420.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-13">
+    <img src="images/placeholder.jpg" alt="Дорадо на грилі" loading="lazy">
+    <div class="item-info">
+      <h4>Дорадо на грилі</h4>
+      <p class="weight">250/50/30</p>
+      <p class="price">420.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="hotdishes-14">
+    <img src="images/placeholder.jpg" alt="Скумбрія гриль з соусом тар-тар" loading="lazy">
+    <div class="item-info">
+      <h4>Скумбрія гриль з соусом тар-тар</h4>
+      <p class="weight">200/100/50/30</p>
+      <p class="price">320.00</p>
+    </div>
+  </div>
+
+</article>
+
+<!-- 🍕 Піца -->
+<article class="category" id="pizza">
+  <h3>🍕 Піца</h3>
+
+  <div class="menu-item" data-id="pizza-1">
+    <img src="images/placeholder.jpg" alt="Піца «Чотири сири»" loading="lazy">
+    <div class="item-info">
+      <h4>Піца «Чотири сири»</h4>
+      <p class="weight">480</p>
+      <p class="price">260.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-2">
+    <img src="images/placeholder.jpg" alt="Піца «Маргарита»" loading="lazy">
+    <div class="item-info">
+      <h4>Піца «Маргарита»</h4>
+      <p class="weight">420</p>
+      <p class="price">205.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-3">
+    <img src="images/placeholder.jpg" alt="Піца «Пепероні»" loading="lazy">
+    <div class="item-info">
+      <h4>Піца «Пепероні»</h4>
+      <p class="weight">430</p>
+      <p class="price">235.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-4">
+    <img src="images/Піца Гавайська.jpg " alt="Піца «Гавайська»"  loading="lazy">
+    <div class="item-info">
+      <h4>Піца «Гавайська»</h4>
+      <p class="weight">360</p>
+      <p class="price">240.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-5">
+    <img src="images/placeholder.jpg" alt="Піца «Барбекю»" loading="lazy">
+    <div class="item-info">
+      <h4>Піца «Барбекю»</h4>
+      <p class="weight">500</p>
+      <p class="price">285.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-6">
+    <img src="images/placeholder.jpg" alt="Піца «Прошутто»" loading="lazy">
+    <div class="item-info">
+      <h4>Піца «Прошутто»</h4>
+      <p class="weight">420</p>
+      <p class="price">295.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-7">
+    <img src="images/Піца Цезарь.jpg" alt="Піца «Цезар»" loading="lazy">
+    <div class="item-info">
+      <h4>Піца «Цезар»</h4>
+      <p class="weight">530</p>
+      <p class="price">305.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-8">
+    <img src="images/Хачапурі з сулугуні.jpg" alt="Хачапурі з сулугуні" loading="lazy">
+    <div class="item-info">
+      <h4>Хачапурі з сулугуні</h4>
+      <p class="weight">350</p>
+      <p class="price">195.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pizza-9">
+    <img src="images/placeholder.jpg" alt="Хачапурі по-аджарськи" loading="lazy">
+    <div class="item-info">
+      <h4>Хачапурі по-аджарськи</h4>
+      <p class="weight">400</p>
+      <p class="price">215.00</p>
+    </div>
+  </div>
+</article>
+
+<!-- 🍔 Бургери -->
+<article class="category" id="burgers">
+  <h3>🍔 Бургери</h3>
+
+  <div class="menu-item" data-id="burger-1">
+    <img src="images/placeholder.jpg" alt="Бургер + картопля фрі" loading="lazy">
+    <div class="item-info">
+      <h4>Бургер + картопля фрі</h4>
+      <p class="weight">280/40/100</p>
+      <p class="price">225.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="burger-2">
+    <img src="images/placeholder.jpg" alt="Чізбургер + картопля фрі" loading="lazy">
+    <div class="item-info">
+      <h4>Чізбургер + картопля фрі</h4>
+      <p class="weight">300/40/100</p>
+      <p class="price">240.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="burger-3">
+    <img src="images/placeholder.jpg" alt="Чізбургер з беконом + картопля фрі" loading="lazy">
+    <div class="item-info">
+      <h4>Чізбургер з беконом + картопля фрі</h4>
+      <p class="weight">320/40/100</p>
+      <p class="price">255.00</p>
+    </div>
+  </div>
+</article>
+
+<!-- 🍝 Паста -->
+<article class="category" id="pasta">
+  <h3>🍝 Паста</h3>
+
+  <div class="menu-item" data-id="pasta-1">
+    <img src="images/placeholder.jpg" alt="Паста Карбонара" loading="lazy">
+    <div class="item-info">
+      <h4>Паста Карбонара</h4>
+      <p class="weight">380/15</p>
+      <p class="price">295.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pasta-2">
+    <img src="images/placeholder.jpg" alt="Паста з куркою під соусом Маринара" loading="lazy">
+    <div class="item-info">
+      <h4>Паста з куркою під соусом Маринара</h4>
+      <p class="weight">380/15</p>
+      <p class="price">265.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pasta-3">
+    <img src="images/placeholder.jpg" alt="Паста з морепродуктами" loading="lazy">
+    <div class="item-info">
+      <h4>Паста з морепродуктами</h4>
+      <p class="weight">380/15</p>
+      <p class="price">320.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="pasta-4">
+    <img src="images/placeholder.jpg" alt="Паста з креветками" loading="lazy">
+    <div class="item-info">
+      <h4>Паста з креветками</h4>
+      <p class="weight">380/15</p>
+      <p class="price">320.00</p>
+    </div>
+  </div>
+</article>
+
+<!-- 👶 Дитяче меню -->
+<article class="category" id="kids">
+  <h3>👶 Дитяче меню</h3>
+
+  <div class="menu-item" data-id="kids-1">
+    <img src="images/placeholder.jpg" alt="Макарони та котлетка з курячого філе на пару, броколі та цвітна капуста на пару" loading="lazy">
+    <div class="item-info">
+      <h4>Макарони та котлетка з курячого філе на пару, броколі та цвітна капуста на пару</h4>
+      <p class="weight">150/150/50</p>
+      <p class="price">245.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="kids-2">
+    <img src="images/placeholder.jpg" alt="Картопляне пюре та шашличок із курки" loading="lazy">
+    <div class="item-info">
+      <h4>Картопляне пюре та шашличок із курки</h4>
+      <p class="weight">150/50</p>
+      <p class="price">235.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="kids-3">
+    <img src="images/placeholder.jpg" alt="Запечене яблуко з медом та горіхами" loading="lazy">
+    <div class="item-info">
+      <h4>Запечене яблуко з медом та горіхами</h4>
+      <p class="weight">250</p>
+      <p class="price">120.00</p>
+    </div>
+  </div>
+</article>
+
+
+<!-- 🍰 Десерти -->
+<article class="category" id="desserts">
+  <h3>🍰 Десерти</h3>
+
+  <div class="menu-item" data-id="desserts-1">
+    <img src="images/placeholder.jpg" alt="Сирники по-домашньому" loading="lazy">
+    <div class="item-info">
+      <h4>Сирники по-домашньому</h4>
+      <p class="weight">220/50</p>
+      <p class="price">175.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="desserts-2">
+    <img src="images/Шоколадний фондан.jpg" alt="Шоколадний фондан з морозивом" loading="lazy">
+    <div class="item-info">
+      <h4>Шоколадний фондан з морозивом</h4>
+      <p class="weight">90/40</p>
+      <p class="price">180.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="desserts-3">
+    <img src="images/Млинці з маком.jpg" alt="Млинці з маком та шоколадним соусом" loading="lazy">
+    <div class="item-info">
+      <h4>Млинці з маком та шоколадним соусом</h4>
+      <p class="weight">200/50</p>
+      <p class="price">155.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="desserts-4">
+    <img src="images/Крем брюле.jpg" alt="Крем-брюле з карамельною скоринкою" loading="lazy">
+    <div class="item-info">
+      <h4>Крем-брюле з карамельною скоринкою</h4>
+      <p class="weight">130/30</p>
+      <p class="price">165.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="desserts-5">
+    <img src="images/Медовик.jpg" alt="Медовик" loading="lazy">
+    <div class="item-info">
+      <h4>Медовик</h4>
+      <p class="weight">150/30</p>
+      <p class="price">175.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="desserts-6">
+    <img src="images/placeholder.jpg" alt="Наполеон" loading="lazy">
+    <div class="item-info">
+      <h4>Наполеон</h4>
+      <p class="weight">150/30</p>
+      <p class="price">175.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="desserts-7">
+    <img src="images/Яблунева тарта.jpg" alt="Яблунева тарта з морозивом" loading="lazy">
+    <div class="item-info">
+      <h4>Яблунева тарта з морозивом</h4>
+      <p class="weight">230</p>
+      <p class="price">185.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="desserts-8">
+    <img src="images/placeholder.jpg" alt="Морозиво в асортименті" loading="lazy">
+    <div class="item-info">
+      <h4>Морозиво в асортименті</h4>
+      <p class="weight">50</p>
+      <p class="price">70.00</p>
+    </div>
+  </div>
+
+</article>
+
+
+<!-- 🥤 Напої -->
+<article class="category" id="drinks">
+  <h3>🥤 Напої</h3>
+
+  <!-- Безалкогольні -->
+  <h4>Безалкогольні напої</h4>
+
+  <div class="menu-item" data-id="drinks-non-1">
+    <div class="item-info">
+      <h4>Сік в асортименті</h4>
+      <p class="weight">200 мл</p>
+      <p class="price">40.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-non-2">
+    <div class="item-info">
+      <h4>Вода Моршинська в асортименті</h4>
+      <p class="weight">500 мл</p>
+      <p class="price">45.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-non-3">
+    <div class="item-info">
+      <h4>Кока-кола скло</h4>
+      <p class="weight">250 мл</p>
+      <p class="price">65.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-non-4">
+    <div class="item-info">
+      <h4>Кока-кола ж/б</h4>
+      <p class="weight">—</p>
+      <p class="price">55.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-non-5">
+    <div class="item-info">
+      <h4>Узвар з сухофруктів</h4>
+      <p class="weight">250 мл</p>
+      <p class="price">25.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-non-6">
+    <div class="item-info">
+      <h4>Молочний коктейль</h4>
+      <p class="weight">300 мл</p>
+      <p class="price">125.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-non-7">
+    <div class="item-info">
+      <h4>Лимонад</h4>
+      <p class="weight">300 мл</p>
+      <p class="price">85.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-non-8">
+    <div class="item-info">
+      <h4>Мохіто класичний б/а</h4>
+      <p class="weight">300 мл</p>
+      <p class="price">95.00</p>
+    </div>
+  </div>
+<!-- ЧАЙ ТА КАВА -->
+<h4>Чай та кава</h4>
+
+<div class="menu-item" data-id="drinks-tea-1">
+  <div class="item-info">
+    <h4>Чай в асортименті</h4>
+    <p class="weight">300 мл</p>
+    <p class="price">50.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-tea-2">
+  <div class="item-info">
+    <h4>Чай в асортименті</h4>
+    <p class="weight">600 мл</p>
+    <p class="price">70.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-coffee-1">
+  <div class="item-info">
+    <h4>Кава американо</h4>
+    <p class="weight">60 мл</p>
+    <p class="price">50.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-coffee-2">
+  <div class="item-info">
+    <h4>Кава американо з молоком</h4>
+    <p class="weight">60 / 30 мл</p>
+    <p class="price">60.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-coffee-3">
+  <div class="item-info">
+    <h4>Еспресо</h4>
+    <p class="weight">30 мл</p>
+    <p class="price">50.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-coffee-4">
+  <div class="item-info">
+    <h4>Капучино</h4>
+    <p class="weight">180 мл</p>
+    <p class="price">70.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-coffee-5">
+  <div class="item-info">
+    <h4>Латте</h4>
+    <p class="weight">250 мл</p>
+    <p class="price">79.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-coffee-6">
+  <div class="item-info">
+    <h4>Какао</h4>
+    <p class="weight">250 мл</p>
+    <p class="price">75.00</p>
+  </div>
+</div>
+
+  <!-- Алкогольні -->
+  <h4>Алкогольні напої</h4>
+
+  <!-- Вино -->
+  <h5>Вино</h5>
+  <div class="menu-item" data-id="drinks-alc-wine-1">
+    <div class="item-info">
+      <h4>KVAZI ЦИНАНДАЛІ біле / сухе</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">40.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-alc-wine-2">
+    <div class="item-info">
+      <h4>KVAZI САПЕРАВІ червоне / сухе</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">45.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-alc-wine-3">
+    <div class="item-info">
+      <h4>SHABO Класичне КАБАРНЕ червоне / сухе</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">30.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-alc-wine-4">
+    <div class="item-info">
+      <h4>PROSECCO ігристе</h4>
+      <p class="weight">1 пл.</p>
+      <p class="price">750.00</p>
+    </div>
+  </div>
+
+<div class="menu-item" data-id="drinks-alc-wine-5">
+  <div class="item-info">
+    <h4>KVAZI АЛАЗ ДОЛ червоне / нсол</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">40.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-wine-6">
+  <div class="item-info">
+    <h4>SHABO Піно ГРІДЖІО</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">30.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-wine-7">
+  <div class="item-info">
+    <h4>MARTINI ASTI ігристе</h4>
+    <p class="weight">1 пл</p>
+    <p class="price">1050.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-wine-8">
+  <div class="item-info">
+    <h4>MARTINI Вермут б’янко</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">55.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-wine-9">
+  <div class="item-info">
+    <h4>MARENGO ігр біле / нс</h4>
+    <p class="weight">1 пл</p>
+    <p class="price">420.00</p>
+  </div>
+</div>
+</div>
+  <!-- Горілка -->
+  <h5>Горілка</h5>
+  <div class="menu-item" data-id="drinks-alc-vodka-1">
+    <div class="item-info">
+      <h4>KHORTYTSYA АЙС</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">35.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-alc-vodka-2">
+    <div class="item-info">
+      <h4>ABSOLUT</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">70.00</p>
+    </div>
+  </div>
+<div class="menu-item" data-id="drinks-alc-vodka-3">
+  <div class="item-info">
+    <h4>ПЕРША ГІЛЬДІЯ</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">45.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-vodka-4">
+  <div class="item-info">
+    <h4>NEMIROFF штоф</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">35.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-vodka-5">
+  <div class="item-info">
+    <h4>ГЕТЬМАН</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">40.00</p>
+  </div>
+</div>
+  <!-- Коньяк -->
+  <h5>Коньяк</h5>
+  <div class="menu-item" data-id="drinks-alc-cognac-1">
+    <div class="item-info">
+      <h4>SARAJISHVILI 5*</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">105.00</p>
+    </div>
+  </div>
+<div class="menu-item" data-id="drinks-alc-cognac-2">
+  <div class="item-info">
+    <h4>SHABO RES 5*</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">75.00</p>
+  </div>
+</div>
+  <!-- Віскі -->
+  <h5>Віскі</h5>
+  <div class="menu-item" data-id="drinks-alc-whisky-1">
+    <div class="item-info">
+      <h4>J WALKER RED LABEL</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">105.00</p>
+    </div>
+  </div>
+<div class="menu-item" data-id="drinks-alc-whisky-2">
+  <div class="item-info">
+    <h4>JAMESON</h4>
+    <p class="weight">50 мл</p>
+    <p class="price">130.00</p>
+  </div>
+</div>
+  <!-- Ром -->
+  <h5>Ром</h5>
+  <div class="menu-item" data-id="drinks-alc-rum-1">
+    <div class="item-info">
+      <h4>CAPTAIN MORGAN WHITE</h4>
+      <p class="weight">50 мл</p>
+      <p class="price">80.00</p>
+    </div>
+  </div>
+
+  <!-- Пиво -->
+  <h5>Пиво</h5>
+  <div class="menu-item" data-id="drinks-alc-beer-1">
+    <div class="item-info">
+      <h4>Львівське 1715</h4>
+      <p class="weight">500 мл</p>
+      <p class="price">75.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="drinks-alc-beer-2">
+    <div class="item-info">
+      <h4>Кроненбург 1664</h4>
+      <p class="weight">500 мл</p>
+      <p class="price">90.00</p>
+    </div>
+  </div>
+<div class="menu-item" data-id="drinks-alc-beer-3">
+  <div class="item-info">
+    <h4>Львівське 1715</h4>
+    <p class="weight">300 мл</p>
+    <p class="price">55.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-beer-4">
+  <div class="item-info">
+    <h4>Lwivske Eksportowe</h4>
+    <p class="weight">500 мл</p>
+    <p class="price">70.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-beer-5">
+  <div class="item-info">
+    <h4>Карлсберг б/а</h4>
+    <p class="weight">450 мл</p>
+    <p class="price">80.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-beer-6">
+  <div class="item-info">
+    <h4>Кроненбург бланш</h4>
+    <p class="weight">460 мл</p>
+    <p class="price">95.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-beer-7">
+  <div class="item-info">
+    <h4>Лев темне</h4>
+    <p class="weight">500 мл</p>
+    <p class="price">75.00</p>
+  </div>
+</div>
+
+<div class="menu-item" data-id="drinks-alc-beer-8">
+  <div class="item-info">
+    <h4>Кроненбург 1664</h4>
+    <p class="weight">300 мл</p>
+    <p class="price">70.00</p>
+  </div>
+</div>
+
+</article>
+
+<!-- 🎉 Банкетне меню -->
+<article class="category" id="banquet">
+  <h3>🎉 Банкетне меню</h3>
+
+  <div class="menu-item" data-id="banquet-1">
+    <img src="images/placeholder.jpg" alt="Холодець" loading="lazy">
+    <div class="item-info">
+      <h4>Холодець</h4>
+      <p class="weight">400 г</p>
+      <p class="price">240.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-2">
+    <img src="images/placeholder.jpg" alt="Оселедець під шубою" loading="lazy">
+    <div class="item-info">
+      <h4>Оселедець під шубою</h4>
+      <p class="weight">300 г</p>
+      <p class="price">205.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-3">
+    <img src="images/Салат Олівʼє.jpg" alt="Салат «Олів’є»" loading="lazy">
+    <div class="item-info">
+      <h4>Салат «Олів’є»</h4>
+      <p class="weight">300 г</p>
+      <p class="price">230.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-4">
+    <img src="images/placeholder.jpg" alt="Буженина" loading="lazy">
+    <div class="item-info">
+      <h4>Буженина</h4>
+      <p class="weight">100 г</p>
+      <p class="price">130.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-5">
+    <img src="images/placeholder.jpg" alt="Домашня ковбаса" loading="lazy">
+    <div class="item-info">
+      <h4>Домашня ковбаса</h4>
+      <p class="weight">100 г</p>
+      <p class="price">125.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-6">
+    <img src="images/placeholder.jpg" alt="Запечена підчеревина" loading="lazy">
+    <div class="item-info">
+      <h4>Запечена підчеревина</h4>
+      <p class="weight">100 г</p>
+      <p class="price">105.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-7">
+    <img src="images/placeholder.jpg" alt="М’ясне асорті українське" loading="lazy">
+    <div class="item-info">
+      <h4>М’ясне асорті українське (буженина, рулет кур., підчер., дом. ковб.)</h4>
+      <p class="weight">400/60 г</p>
+      <p class="price">480.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-8">
+    <img src="images/placeholder.jpg" alt="Голубці" loading="lazy">
+    <div class="item-info">
+      <h4>Голубці</h4>
+      <p class="weight">300/50 г</p>
+      <p class="price">180.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-9">
+    <img src="images/Качка запечена з яблуками.jpg" alt="Качка запечена з яблуками" loading="lazy">
+    <div class="item-info">
+      <h4>Качка запечена з яблуками</h4>
+      <p class="weight">1 шт</p>
+      <p class="price">1150.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-10">
+    <img src="images/placeholder.jpg" alt="Рулька свинина запечена" loading="lazy">
+    <div class="item-info">
+      <h4>Рулька свинина запечена</h4>
+      <p class="weight">1 шт</p>
+      <p class="price">1100.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-11">
+    <img src="images/placeholder.jpg" alt="Щука фарширована" loading="lazy">
+    <div class="item-info">
+      <h4>Щука фарширована</h4>
+      <p class="weight">100 г</p>
+      <p class="price">140.00</p>
+    </div>
+  </div>
+
+  <div class="menu-item" data-id="banquet-12">
+    <img src="images/placeholder.jpg" alt="Жульєн у тарталетках" loading="lazy">
+    <div class="item-info">
+      <h4>Жульєн у тарталетках</h4>
+      <p class="weight">4 шт</p>
+      <p class="price">178.00</p>
+    </div>
+  </div>
+
+</article>
+
+<!-- Страница меню -->
+<section class="cta-section">
+  <h2>Готові зробити замовлення?</h2>
+  <p>Зателефонуйте нам прямо зараз та забронюйте стіл!</p>
+  <div class="cta-buttons">
+    <a href="tel:+380689346464" class="btn btn-primary">📞 Подзвонити</a>
+    <a href="index.html" class="btn btn-outline">🏠 На головну</a>
+  </div>
+</section>
+
+<footer class="footer menu-footer">
+  <div class="footer-overlay"></div>
+  <div class="footer-content">
+    <div class="footer-block">
+      <h3>Контакти</h3>
+      <p>📞 <a href="tel:+380689346464">068 934 64 64</a></p>
+      <p>📍 <a href="https://www.google.com/maps/search/?api=1&query=Sun+City+cafe" target="_blank">
+        вул. Метрологічна, 48, Київ
+      </a></p>
+      <p>🕒 Пн–Нд: 10:00 – 21:00</p>
+    </div>
+    <div class="footer-block">
+      <h3>Наші послуги</h3>
+      <ul>
+        <li>🍴 Їжа на винос</li>
+        <li>💳 Безготівкова оплата</li>
+        <li>📱 NFC-платежі</li>
+        <li>👨‍👩‍👧 Сімейне середовище</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Sun City Cafe</div>
+</footer>
+</body>
+</html>
