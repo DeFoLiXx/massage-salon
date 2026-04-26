@@ -292,11 +292,7 @@
   margin-top: 10px;
 }
 
-/* Hover эффект */
-.new-items-card:hover {
-  transform: scale(1.05);
-  transition: 0.3s;
-}
+
 
 /* 📱 Мобилка */
 @media (max-width: 768px) {
@@ -483,23 +479,16 @@
 
 /* 📱 мобилка */
 @media (max-width: 768px) {
-
   .complex-wrapper {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 15px;
-    padding: 0 15px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .complex-lunch-card,
   .new-items-card {
-    width: 100% !important;
-    max-width: 400px !important;
-    height: auto !important;
+    width: 100%;
+    max-width: 400px;
   }
-
 }
 </style> 
 <div class="mini-cards-wrapper">
@@ -1263,6 +1252,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <h4></h4>
       <p class="weight"></p>
       <p class="price"></p>
+      
     </div>
   </div>
 </article>
@@ -2180,5 +2170,8 @@ document.addEventListener("DOMContentLoaded", () => {
   </div>
   <div class="footer-bottom">© 2026 Sun City Cafe</div>
 </footer>
+<button id="scrollTopBtn" aria-label="Наверх">
+  ↑
+</button>
 </body>
 </html>

@@ -801,3 +801,35 @@ header {
   transition: transform 0.2s ease-out;
   will-change: transform;
 }
+#scrollTopBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+#scrollTopBtn:hover {
+  transform: scale(1.08);
+}
+
+#scrollTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+}
