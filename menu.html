@@ -332,19 +332,15 @@
 
   </div>
 </section>
-
-
-
-
 <style>
-/* Hero фон уже есть, overlay для затемнения */
+/* ===== HERO ===== */
 .menu-hero {
   background: #ddd url('images/hall.jpg') center/cover no-repeat;
   height: auto;
-  padding: 60px 20px 40px 20px; /* чтобы была высота и место под карточку */
+  padding: 60px 20px 40px 20px;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* начало сверху */
+  align-items: flex-start;
   text-align: center;
   color: #fff;
   position: relative;
@@ -353,84 +349,60 @@
 .menu-content {
   position: relative;
   z-index: 1;
-  max-width: 900px; /* чтобы не растягивалось */
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.complex-lunch-card {
-  background: #fff; /* белый фон */
-  color: #000;      /* текст чёрный */
-  padding: 20px;
-  border-radius: 15px;
-  max-width: 400px;
-  margin: 20px auto 0 auto; /* центрирование и отступ сверху */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-.complex-lunch-card h2 {
-  margin: 0 0 10px 0;
-}
-.complex-lunch-card .price {
-  font-weight: bold;
-  font-size: 1.2rem;
-  margin-top: 10px;
-}
-.new-items-list {
-  margin-top: 15px;
-}
-
-.new-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.3);
-}
-
-.new-item .left {
-  flex: 2;
-  text-align: left;
-}
-
-.new-item .center {
-  flex: 1;
-  text-align: center;
-  opacity: 0.8;
-}
-
-.new-item .right {
-  flex: 1;
-  text-align: right;
-  font-weight: bold;
-}
+/* ===== WRAPPER (2 КАРТОЧКИ) ===== */
 .complex-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: flex-start; /* важно */
+  justify-content: space-between;
+  align-items: flex-start;
   gap: 20px;
   margin-top: 25px;
   padding: 0 15px;
-  flex-wrap: wrap;
+  width: 100%;
 }
 
-/* ОБЕ КАРТОЧКИ */
+/* ===== ОБЩИЕ КАРТОЧКИ ===== */
 .complex-lunch-card,
 .new-items-card {
-  flex: 1 1 380px;
-  max-width: 400px
+  flex: 1;
+  max-width: 400px;   /* ✔ фикс: был баг без ; */
   height: fit-content;
   border-radius: 15px;
   padding: 20px;
   box-sizing: border-box;
+  align-self: flex-start;
 }
 
-/* КОМПЛЕКС */
+/* ===== КОМПЛЕКСНЫЙ ОБЕД ===== */
 .complex-lunch-card {
   background: #fff;
   color: #000;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* НОВИНКИ */
+.complex-lunch-card h2 {
+  margin: 0 0 10px 0;
+}
+
+.complex-lunch-card .price {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 10px;
+}
+
+/* убираем пустые блоки */
+.complex-lunch-card p {
+  margin: 0;
+}
+
+.complex-lunch-card p:empty {
+  display: none;
+}
+
+/* ===== НОВИНКИ ===== */
 .new-items-card {
   position: relative;
   background: linear-gradient(135deg, #ff7f50, #ff3c00);
@@ -464,14 +436,19 @@
   font-size: 0.8rem;
   transform: rotate(45deg);
 }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .complex-wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+
   .complex-lunch-card,
   .new-items-card {
     width: 100%;
     max-width: 400px;
   }
-  .complex-lunch-card,
-.new-items-card {
-  align-self: flex-start;
 }
 </style> 
 <div class="mini-cards-wrapper">
